@@ -22,7 +22,8 @@ public class Outcast {
                     distance += this.wordNet.distance(nounA, nounB);
                 }
             }
-            if (distance >= max) {
+            if (distance > max) {
+                max = distance;
                 outcast = nounA;
             }
         }

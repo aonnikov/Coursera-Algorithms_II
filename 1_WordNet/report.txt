@@ -9,20 +9,20 @@ Findbugs:     PASSED
 PMD:          PASSED
 Checkstyle:   PASSED
 
-Correctness:  27/35 tests passed
+Correctness:  35/35 tests passed
 Memory:       4/4 tests passed
-Timing:       21/27 tests passed
+Timing:       27/27 tests passed
 
-Aggregate score: 81.84%
+Aggregate score: 100.00%
 [Compilation: 5%, API: 5%, Findbugs: 0%, PMD: 0%, Checkstyle: 0%, Correctness: 60%, Memory: 10%, Timing: 20%]
 
 ASSESSMENT DETAILS
 
 The following files were submitted:
 ----------------------------------
-1.2K Dec 10 06:49 Outcast.java
-3.9K Dec 10 06:49 SAP.java
-4.4K Dec 10 06:49 WordNet.java
+1.2K Dec 10 08:50 Outcast.java
+3.5K Dec 10 08:50 SAP.java
+4.6K Dec 10 08:50 WordNet.java
 
 
 ********************************************************************************
@@ -68,8 +68,6 @@ Outcast:
 
 % pmd .
 *-----------------------------------------------------------
-SAP.java:6: The private instance (or static) variable 'G' can be made 'final'; it is initialized only in the declaration or constructor. [ImmutableField]
-PMD ends with 1 warning.
 
 
 ================================================================
@@ -221,13 +219,11 @@ Test 17: check length() and ancestor() with Iterable arguments
   * 100 random subsets of 2 and 1 vertices in digraph-wordnet.txt
   * 100 random subsets of 2 and 2 vertices in digraph-wordnet.txt
   * 100 random subsets of 3 and 11 vertices in digraph-wordnet.txt
-
-        ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-        OperationCountLimitExceededException
-        Number of primitive operations in Digraph exceeds limit: 1000000000
-        ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-
-==> FAILED
+  * 100 random subsets of 11 and 3 vertices in digraph-wordnet.txt
+  * 100 random subsets of 0 and 5 vertices in digraph-wordnet.txt
+  * 100 random subsets of 5 and 0 vertices in digraph-wordnet.txt
+  * 100 random subsets of 0 and 0 vertices in digraph-wordnet.txt
+==> passed
 
 Test 18: Check Iterable version of length() and ancestor() with null arguments
 ==> passed
@@ -241,7 +237,7 @@ Test 19: random calls to both version of length() and ancestor(),
 ==> passed
 
 
-Total: 18/19 tests passed!
+Total: 19/19 tests passed!
 
 
 ================================================================
@@ -276,120 +272,24 @@ Test 3: check distance() with random noun pairs
 
 Test 4: check sap() with random noun pairs
   * 1000 pairs using synsets = synsets.txt; hypernyms = hypernyms.txt
-    - student returns invalid synset on pair 1 of 1000
-    - nounA = Coca
-    - nounB = family_Dicranaceae
-    - student   distance() = 15
-    - reference distance() = 15
-    - student   sap() = '38003'
-    - reference sap() = 'entity'
-
-==> FAILED
+==> passed
 
 Test 5: check sap() with all noun pairs
   * synsets = synsets15.txt; hypernyms = hypernyms15Path.txt
-    - student returns invalid synset on pair 1 of 15
-    - nounA = a
-    - nounB = a
-    - student   distance() = 0
-    - reference distance() = 0
-    - student   sap() = '0'
-    - reference sap() = 'a'
-
   * synsets = synsets15.txt; hypernyms = hypernyms15Tree.txt
-    - student returns invalid synset on pair 1 of 15
-    - nounA = a
-    - nounB = a
-    - student   distance() = 0
-    - reference distance() = 0
-    - student   sap() = '0'
-    - reference sap() = 'a'
-
   * synsets = synsets6.txt; hypernyms = hypernyms6TwoAncestors.txt
-    - student returns invalid synset on pair 1 of 6
-    - nounA = a
-    - nounB = a
-    - student   distance() = 0
-    - reference distance() = 0
-    - student   sap() = '0'
-    - reference sap() = 'a'
-
   * synsets = synsets11.txt; hypernyms = hypernyms11AmbiguousAncestor.txt
-    - student returns invalid synset on pair 1 of 11
-    - nounA = a
-    - nounB = a
-    - student   distance() = 0
-    - reference distance() = 0
-    - student   sap() = '0'
-    - reference sap() = 'a'
-
   * synsets = synsets8.txt; hypernyms = hypernyms8ModTree.txt
-    - student returns invalid synset on pair 1 of 8
-    - nounA = a
-    - nounB = a
-    - student   distance() = 0
-    - reference distance() = 0
-    - student   sap() = '0'
-    - reference sap() = 'a'
-
   * synsets = synsets8.txt; hypernyms = hypernyms8WrongBFS.txt
-    - student returns invalid synset on pair 1 of 8
-    - nounA = a
-    - nounB = a
-    - student   distance() = 0
-    - reference distance() = 0
-    - student   sap() = '0'
-    - reference sap() = 'a'
-
   * synsets = synsets11.txt; hypernyms = hypernyms11ManyPathsOneAncestor.txt
-    - student returns invalid synset on pair 1 of 11
-    - nounA = a
-    - nounB = a
-    - student   distance() = 0
-    - reference distance() = 0
-    - student   sap() = '0'
-    - reference sap() = 'a'
-
   * synsets = synsets8.txt; hypernyms = hypernyms8ManyAncestors.txt
-    - student returns invalid synset on pair 1 of 8
-    - nounA = a
-    - nounB = a
-    - student   distance() = 0
-    - reference distance() = 0
-    - student   sap() = '0'
-    - reference sap() = 'a'
-
-==> FAILED
+==> passed
 
 Test 6: check sap() with random noun pairs
   * 1000 pairs using synsets = synsets100-subgraph.txt; hypernyms = hypernyms100-subgraph.txt
-    - student returns invalid synset on pair 1 of 1000
-    - nounA = Hageman_factor
-    - nounB = factor_VIII
-    - student   distance() = 2
-    - reference distance() = 2
-    - student   sap() = '11'
-    - reference sap() = 'coagulation_factor clotting_factor'
-
   * 1000 pairs using synsets = synsets500-subgraph.txt; hypernyms = hypernyms500-subgraph.txt
-    - student returns invalid synset on pair 1 of 1000
-    - nounA = thyroglobulin
-    - nounB = paraffin
-    - student   distance() = 6
-    - reference distance() = 6
-    - student   sap() = '274'
-    - reference sap() = 'macromolecule supermolecule'
-
   * 1000 pairs using synsets = synsets1000-subgraph.txt; hypernyms = hypernyms1000-subgraph.txt
-    - student returns invalid synset on pair 1 of 1000
-    - nounA = cane_sugar
-    - nounB = endonuclease
-    - student   distance() = 6
-    - reference distance() = 6
-    - student   sap() = '482'
-    - reference sap() = 'macromolecule supermolecule'
-
-==> FAILED
+==> passed
 
 Test 7: check whether WordNet is immutable
   * synsets = synsets.txt; hypernyms = hypernyms.txt
@@ -397,20 +297,11 @@ Test 7: check whether WordNet is immutable
 
 Test 8: check constructor when input is not a rooted DAG
   * synsets3.txt, hypernyms3InvalidTwoRoots.txt
-    - constructor fails to throw an exception
-    - it should throw a java.lang.IllegalArgumentException
-
   * synsets3.txt, hypernyms3InvalidCycle.txt
   * synsets6.txt, hypernyms6InvalidTwoRoots.txt
-    - constructor fails to throw an exception
-    - it should throw a java.lang.IllegalArgumentException
-
   * synsets6.txt, hypernyms6InvalidCycle.txt
   * synsets6.txt, hypernyms6InvalidCycle+Path.txt
-    - constructor fails to throw an exception
-    - it should throw a java.lang.IllegalArgumentException
-
-==> FAILED
+==> passed
 
 Test 9: check isNoun()
   * synsets = synsets.txt; hypernyms = hypernyms.txt
@@ -451,39 +342,12 @@ Test 14: random calls to isNoun(), distance(), and sap(), with
          probabilities p1, p2, and p3, respectively
   * 100 random calls (p1 = 0.5, p2 = 0.5, p3 = 0.0)
   * 100 random calls (p1 = 0.5, p2 = 0.0, p3 = 0.5)
-    - student returns invalid synset on pair 1 of 100
-    - nounA = angiohemophilia
-    - nounB = soda_pop
-    - student   distance() = 18
-    - reference distance() = 18
-    - student   sap() = '38003'
-    - reference sap() = 'entity'
-
-    - failed on call 1 to sap()
   * 100 random calls (p1 = 0.0, p2 = 0.5, p3 = 0.5)
-    - student returns invalid synset on pair 4 of 100
-    - nounA = public_relations
-    - nounB = secateurs
-    - student   distance() = 18
-    - reference distance() = 18
-    - student   sap() = '38003'
-    - reference sap() = 'entity'
-
-    - failed on call 4 to sap()
   * 100 random calls (p1 = 0.2, p2 = 0.4, p3 = 0.4)
-    - student returns invalid synset on pair 5 of 100
-    - nounA = complication
-    - nounB = geographical_indication
-    - student   distance() = 9
-    - reference distance() = 9
-    - student   sap() = '18840'
-    - reference sap() = 'abstraction abstract_entity'
-
-    - failed on call 5 to sap()
-==> FAILED
+==> passed
 
 
-Total: 9/14 tests passed!
+Total: 14/14 tests passed!
 
 
 ================================================================
@@ -500,72 +364,24 @@ Test 1: check outcast() on WordNet digraph
   * outcast2.txt
   * outcast3.txt
   * outcast4.txt
-    - nouns = [probability, statistics, mathematics, physics]
-    - student   outcast() = physics
-    - reference outcast() = probability
-
   * outcast5.txt
   * outcast5a.txt
   * outcast7.txt
-    - nouns = [Asia, Australia, North_America, India, Europe, Antarctica, South_America]
-    - student   outcast() = South_America
-    - reference outcast() = India
-
   * outcast8.txt
-    - nouns = [water, soda, bed, orange_juice, milk, apple_juice, tea, coffee]
-    - student   outcast() = coffee
-    - reference outcast() = bed
-
   * outcast8a.txt
   * outcast8b.txt
-    - nouns = [apple, orange, banana, grape, strawberry, cabbage, mango, watermelon]
-    - student   outcast() = watermelon
-    - reference outcast() = cabbage
-
   * outcast8c.txt
-    - nouns = [car, auto, truck, plane, tree, train, vehicle, van]
-    - student   outcast() = van
-    - reference outcast() = tree
-
   * outcast9.txt
-    - nouns = [lumber, wood, tree, leaf, nail, house, building, edifice, structure]
-    - student   outcast() = structure
-    - reference outcast() = tree
-
   * outcast9a.txt
-    - nouns = [hair, eyes, arm, mouth, nose, ear, cheek, brow, chin]
-    - student   outcast() = chin
-    - reference outcast() = eyes
-
   * outcast10.txt
-    - nouns = [cat, cheetah, dog, wolf, albatross, horse, zebra, lemur, orangutan, chimpanzee]
-    - student   outcast() = chimpanzee
-    - reference outcast() = albatross
-
   * outcast10a.txt
   * outcast11.txt
   * outcast12.txt
-    - nouns = [Dylan, folk, Guthrie, idol, Minneapolis, music, musical, playing, public, recognition, review, thunderbird]
-    - student   outcast() = thunderbird
-    - reference outcast() = Minneapolis
-
   * outcast12a.txt
   * outcast17.txt
-    - nouns = [art, canvas, china, culture, kingdom, particularism, point, portable, ritual, road, script, sculpture, silk, style, transmission, wall, toluene]
-    - student   outcast() = toluene
-    - reference outcast() = particularism
-
   * outcast20.txt
-    - nouns = [art, Buddha, Buddhism, canvas, china, culture, India, kingdom, particularism, point, portable, ritual, road, script, sculpture, silk, style, transmission, wall, toluene]
-    - student   outcast() = toluene
-    - reference outcast() = particularism
-
   * outcast29.txt
-    - nouns = [acorn, application, assembly, award, basic, cad, code, computer, custom, depth, development, finish, hardware, instruction, language, machine, model, operation, processor, project, silicon, simulation, software, speed, support, team, technology, test, mosque]
-    - student   outcast() = mosque
-    - reference outcast() = acorn
-
-==> FAILED
+==> passed
 
 Test 2: check outcast() on WordNet subgraph
         (synsets50000-subgraph.txt and hypernyms50000-subgraph.txt)
@@ -574,40 +390,16 @@ Test 2: check outcast() on WordNet subgraph
   * outcast5.txt
   * outcast5a.txt
   * outcast7.txt
-    - nouns = [Asia, Australia, North_America, India, Europe, Antarctica, South_America]
-    - student   outcast() = South_America
-    - reference outcast() = India
-
   * outcast8.txt
-    - nouns = [water, soda, bed, orange_juice, milk, apple_juice, tea, coffee]
-    - student   outcast() = coffee
-    - reference outcast() = bed
-
   * outcast8b.txt
-    - nouns = [apple, orange, banana, grape, strawberry, cabbage, mango, watermelon]
-    - student   outcast() = watermelon
-    - reference outcast() = cabbage
-
   * outcast8c.txt
-    - nouns = [car, auto, truck, plane, tree, train, vehicle, van]
-    - student   outcast() = van
-    - reference outcast() = tree
-
   * outcast9.txt
-    - nouns = [lumber, wood, tree, leaf, nail, house, building, edifice, structure]
-    - student   outcast() = structure
-    - reference outcast() = tree
-
   * outcast10.txt
-    - nouns = [cat, cheetah, dog, wolf, albatross, horse, zebra, lemur, orangutan, chimpanzee]
-    - student   outcast() = chimpanzee
-    - reference outcast() = albatross
-
   * outcast11.txt
-==> FAILED
+==> passed
 
 
-Total: 0/2 tests passed!
+Total: 2/2 tests passed!
 
 
 ================================================================
@@ -641,7 +433,7 @@ Test 1a: check memory of WordNet object
   * synsets = synsets1000-subgraph.txt; hypernyms = hypernyms1000-subgraph.txt
     - number of vertices in digraph = 1000
     - number of edges    in digraph = 1008
-    - student   memory              = 736936 bytes
+    - student   memory              = 728728 bytes
     - reference memory              = 1494080 bytes
     - student / reference ratio     = 0.5
     - maximum allowed rato          = 2.0
@@ -652,8 +444,8 @@ Test 1b: check memory of WordNet object
   * synsets = synsets5000-subgraph.txt; hypernyms = hypernyms5000-subgraph.txt
     - number of vertices in digraph = 5000
     - number of edges    in digraph = 5059
-    - student   memory              = 3646624 bytes
-    - reference memory              = 7296496 bytes
+    - student   memory              = 3606208 bytes
+    - reference memory              = 7296616 bytes
     - student / reference ratio     = 0.5
     - maximum allowed rato          = 2.0
 
@@ -663,8 +455,8 @@ Test 1c: check memory of WordNet object
   * synsets = synsets10000-subgraph.txt; hypernyms = hypernyms10000-subgraph.txt
     - number of vertices in digraph = 10000
     - number of edges    in digraph = 10087
-    - student   memory              = 8173984 bytes
-    - reference memory              = 16931672 bytes
+    - student   memory              = 8382544 bytes
+    - reference memory              = 16932536 bytes
     - student / reference ratio     = 0.5
     - maximum allowed rato          = 2.0
 
@@ -692,9 +484,9 @@ Test 1: time SAP constructor
 
 Test 2a-c: time length() and ancestor() with random pairs of vertices
   *  digraph-wordnet.txt
-     -  reference solution calls per second:  655512.00
-     -  student   solution calls per second:    1619.00
-     -  reference / student ratio:               404.89
+     -  reference solution calls per second:  662283.00
+     -  student   solution calls per second:    1654.00
+     -  reference / student ratio:               400.41
 
 => passed      student <= 50000x reference
 => passed      student <= 10000x reference
@@ -703,33 +495,36 @@ Test 2a-c: time length() and ancestor() with random pairs of vertices
 
 Test 3a-c: time length() and ancestor() with random subsets of 5 vertices
   *  digraph-wordnet.txt
-     -  reference solution calls per second:  200245.00
-     -  student   solution calls per second:      69.00
-     -  reference / student ratio:              2902.10
+     -  reference solution calls per second:  205802.00
+     -  student   solution calls per second:    1629.00
+     -  reference / student ratio:               126.34
 
 => passed      student <= 10000x reference
 => passed      student <=  5000x reference
-=> FAILED      student <=  1000x reference
-=> FAILED      student <=   500x reference
+=> passed      student <=  1000x reference
+=> passed      student <=   500x reference
 
 Test 4a-c: time length() and ancestor() with random subsets of 100 vertices
   *  digraph-wordnet.txt
+     -  reference solution calls per second:   14172.00
+     -  student   solution calls per second:    1461.00
+     -  reference / student ratio:                 9.70
 
-        ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-        OperationCountLimitExceededException
-        Number of primitive operations in Digraph exceeds limit: 5000000000
-        ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+=> passed      student <= 10000x reference
+=> passed      student <=  5000x reference
+=> passed      student <=  1000x reference
+=> passed      student <=   500x reference
 
 Test 5: Time 10 calls to length() and ancestor() on random path graphs
         (must handle V = 65536 in under 2 seconds)
 
              V  seconds
         ---------------
-         65536     0.09
+         65536     0.14
 ==> passed
 
 
-Total: 8/14 tests passed!
+Total: 14/14 tests passed!
 
 
 ================================================================
@@ -775,7 +570,7 @@ Test 4: count Digraph operations during 1000 calls each
   * synsets = synsets.txt; hypernyms = hypernyms.txt
   * calls to constructor = 0
   * calls to addEdge()   = 0
-  * calls to adj()       = 45772
+  * calls to adj()       = 46042
   * calls to reverse()   = 0
   * calls to toString()  = 0
 
@@ -790,9 +585,9 @@ Test 5: time WordNet constructor
 
 Test 6a-e: time sap() and distance() with random nouns
   * synsets = synsets.txt; hypernyms = hypernyms.txt
-    - reference solution calls per second:  213290.75
-    - student   solution calls per second:  246720.75
-    - reference / student ratio:                 0.86
+    - reference solution calls per second:  213150.25
+    - student   solution calls per second:  241891.00
+    - reference / student ratio:                 0.88
 
 => passed    student <= 10000x reference
 => passed    student <=  1000x reference
@@ -802,9 +597,9 @@ Test 6a-e: time sap() and distance() with random nouns
 
 Test 7: time isNoun() with random nouns
   * synsets = synsets.txt; hypernyms = hypernyms.txt
-    - reference solution calls per second:  634022.00
-    - student   solution calls per second:  603345.00
-    - reference / student ratio:                 1.05
+    - reference solution calls per second:  641583.00
+    - student   solution calls per second:  597561.00
+    - reference / student ratio:                 1.07
     - allowed ratio:                             4.00
 ==> passed
 

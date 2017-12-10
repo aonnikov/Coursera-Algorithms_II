@@ -2,7 +2,6 @@ import edu.princeton.cs.algs4.Bag;
 import edu.princeton.cs.algs4.Digraph;
 import edu.princeton.cs.algs4.DirectedCycle;
 import edu.princeton.cs.algs4.In;
-import edu.princeton.cs.algs4.TarjanSCC;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -36,7 +35,7 @@ public class WordNet {
             String[] fields = line.split(",");
             String[] nouns = fields[1].split(" ");
 
-            this.synsetsMap.put(this.synsetCount, fields[0]);
+            this.synsetsMap.put(this.synsetCount, fields[1]);
             for (String noun : nouns) {
                 if (!this.nounsMap.containsKey(noun)) {
                     this.nounsMap.put(noun, new Bag<>());
@@ -68,9 +67,15 @@ public class WordNet {
     }
 
     private boolean isDAG() {
-        // Determine strong components count
-        TarjanSCC tarjanSCC = new TarjanSCC(this.hypernymsDigraph);
-        if (tarjanSCC.count() != this.hypernymsDigraph.V()) {
+        // Determine roots count
+        int rootCount = 0;
+        for (int i = 0; i < this.hypernymsDigraph.V(); i++) {
+            Iterable<Integer> adj = this.hypernymsDigraph.adj(i);
+            if (!adj.iterator().hasNext()) {
+                rootCount++;
+            }
+        }
+        if (rootCount > 1) {
             return false;
         }
 
@@ -128,5 +133,7 @@ public class WordNet {
         System.out.println("Nouns: " + wordNet.nounsMap.size());
         System.out.println(wordNet.hypernymsDigraph.V());
         System.out.println(wordNet.hypernymsDigraph.E());
+
+        assert wordNet.sap("unit", "benzyl_radical").equals("unit building_block");
     }
 }

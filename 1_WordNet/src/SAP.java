@@ -3,8 +3,7 @@ import edu.princeton.cs.algs4.Digraph;
 
 public class SAP {
 
-    private Digraph G;
-
+    private final Digraph G;
 
     public SAP(Digraph G) {
         this.G = new Digraph(G);
@@ -62,19 +61,12 @@ public class SAP {
             throw new IllegalArgumentException();
         }
 
-        int shortestLength = Integer.MAX_VALUE;
+        BreadthFirstDirectedPaths vP = new BreadthFirstDirectedPaths(this.G, v);
+        BreadthFirstDirectedPaths wP = new BreadthFirstDirectedPaths(this.G, w);
 
-        for (int i : v) {
-            for (int j : w) {
-                int length = length(i, j);
-                if (length != -1 && length < shortestLength) {
-                    shortestLength = length;
-                }
-            }
-        }
-
-        if (shortestLength != Integer.MAX_VALUE) {
-            return shortestLength;
+        int ancestor = ancestor(vP, wP);
+        if (ancestor != -1) {
+            return distanceTo(vP, wP, ancestor);
         }
         return -1;
     }
@@ -85,20 +77,10 @@ public class SAP {
             throw new IllegalArgumentException();
         }
 
-        int ancestor = -1;
-        int shortestLength = Integer.MAX_VALUE;
+        BreadthFirstDirectedPaths vP = new BreadthFirstDirectedPaths(this.G, v);
+        BreadthFirstDirectedPaths wP = new BreadthFirstDirectedPaths(this.G, w);
 
-        for (int i : v) {
-            for (int j : w) {
-                int length = length(i, j);
-                if (length != -1 && length < shortestLength) {
-                    shortestLength = length;
-                    ancestor = ancestor(i, j);
-                }
-            }
-        }
-
-        return ancestor;
+        return ancestor(vP, wP);
     }
 
     private void validateVertex(int v) {
@@ -124,11 +106,9 @@ public class SAP {
 
         SAP sap = new SAP(G);
 
-//        assert sap.ancestor(0, 2) == -1;
         assert sap.ancestor(3, 11) == 1;
         assert sap.ancestor(11, 12) == 10;
 
-//        assert sap.length(0, 2) == -1;
         assert sap.length(3, 11) == 4;
     }
 }
